@@ -31,41 +31,41 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="w-full py-16 bg-gradient-to-b from-rose-50 to-white">
+    <div className="w-full py-16 bg-linear-to-b from-purple-50 to-white">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-center text-3xl md:text-4xl font-serif text-rose-900 mb-8">
+        <h2 className="text-center text-3xl md:text-4xl font-serif text-purple-900 mb-8">
           Faltan
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-rose-100">
-            <div className="text-4xl md:text-5xl font-bold text-rose-700 mb-2">
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-purple-100">
+            <div className="text-4xl md:text-5xl font-bold text-purple-700 mb-2">
               {timeLeft.days}
             </div>
-            <div className="text-sm md:text-base text-rose-900 uppercase tracking-wider">
+            <div className="text-sm md:text-base text-purple-900 uppercase tracking-wider">
               Días
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-rose-100">
-            <div className="text-4xl md:text-5xl font-bold text-rose-700 mb-2">
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-purple-100">
+            <div className="text-4xl md:text-5xl font-bold text-purple-700 mb-2">
               {timeLeft.hours}
             </div>
-            <div className="text-sm md:text-base text-rose-900 uppercase tracking-wider">
+            <div className="text-sm md:text-base text-purple-900 uppercase tracking-wider">
               Horas
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-rose-100">
-            <div className="text-4xl md:text-5xl font-bold text-rose-700 mb-2">
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-purple-100">
+            <div className="text-4xl md:text-5xl font-bold text-purple-700 mb-2">
               {timeLeft.minutes}
             </div>
-            <div className="text-sm md:text-base text-rose-900 uppercase tracking-wider">
+            <div className="text-sm md:text-base text-purple-900 uppercase tracking-wider">
               Minutos
             </div>
           </div>
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-rose-100">
-            <div className="text-4xl md:text-5xl font-bold text-rose-700 mb-2">
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-purple-100">
+            <div className="text-4xl md:text-5xl font-bold text-purple-700 mb-2">
               {timeLeft.seconds}
             </div>
-            <div className="text-sm md:text-base text-rose-900 uppercase tracking-wider">
+            <div className="text-sm md:text-base text-purple-900 uppercase tracking-wider">
               Segundos
             </div>
           </div>

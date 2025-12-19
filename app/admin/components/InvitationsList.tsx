@@ -87,11 +87,11 @@ export default function InvitationsList({ onUpdate }: InvitationsListProps) {
           placeholder="Buscar por nombre o código..."
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 focus:border-transparent outline-none"
+          className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
         />
         <button
           onClick={() => setShowAddModal(true)}
-          className="px-6 py-2 bg-rose-600 hover:bg-rose-700 text-white rounded-lg transition"
+          className="px-6 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition"
         >
           + Nueva Invitación
         </button>
@@ -220,7 +220,7 @@ function AddInvitationModal({ onClose, onSuccess }: { onClose: () => void, onSuc
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
       <div className="bg-white rounded-lg max-w-md w-full p-6">
-        <h2 className="text-2xl font-serif text-rose-900 mb-4">Nueva Invitación</h2>
+        <h2 className="text-2xl font-serif text-purple-900 mb-4">Nueva Invitación</h2>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -232,7 +232,7 @@ function AddInvitationModal({ onClose, onSuccess }: { onClose: () => void, onSuc
               required
               value={formData.guest_name}
               onChange={(e) => setFormData({...formData, guest_name: e.target.value})}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
             />
           </div>
 
@@ -243,7 +243,7 @@ function AddInvitationModal({ onClose, onSuccess }: { onClose: () => void, onSuc
             <select
               value={formData.type}
               onChange={(e) => setFormData({...formData, type: e.target.value})}
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
             >
               <option value="individual">Individual</option>
               <option value="pareja">Pareja</option>
@@ -262,7 +262,7 @@ function AddInvitationModal({ onClose, onSuccess }: { onClose: () => void, onSuc
                 required
                 value={formData.max_guests}
                 onChange={(e) => setFormData({...formData, max_guests: parseInt(e.target.value)})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
               />
             </div>
             <div>
@@ -275,7 +275,7 @@ function AddInvitationModal({ onClose, onSuccess }: { onClose: () => void, onSuc
                 required
                 value={formData.estimated_guests}
                 onChange={(e) => setFormData({...formData, estimated_guests: parseInt(e.target.value)})}
-                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-rose-500 outline-none"
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
               />
             </div>
           </div>
@@ -291,7 +291,7 @@ function AddInvitationModal({ onClose, onSuccess }: { onClose: () => void, onSuc
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-4 py-2 bg-rose-600 text-white rounded-lg hover:bg-rose-700 transition disabled:opacity-50"
+              className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition disabled:opacity-50"
             >
               {loading ? 'Creando...' : 'Crear'}
             </button>

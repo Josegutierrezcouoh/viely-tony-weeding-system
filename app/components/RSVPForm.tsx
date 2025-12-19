@@ -44,7 +44,7 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
           <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
-          <h3 className="text-2xl font-serif text-rose-900 mb-2">¡Gracias por confirmar!</h3>
+          <h3 className="text-2xl font-serif text-purple-900 mb-2">¡Gracias por confirmar!</h3>
           <p className="text-gray-600">Hemos recibido tu respuesta.</p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
       )}
       
       <div>
-        <label htmlFor="guestName" className="block text-sm font-medium text-rose-900 mb-2">
+        <label htmlFor="guestName" className="block text-sm font-medium text-purple-900 mb-2">
           Nombre del invitado
         </label>
         <input
@@ -70,13 +70,13 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
           onChange={(e) => setGuestName(e.target.value)}
           required
           disabled
-          className="w-full px-4 py-3 border border-rose-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed"
+          className="w-full px-4 py-3 border border-purple-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed"
           placeholder="Tu nombre completo"
         />
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-rose-900 mb-3">
+        <label className="block text-sm font-medium text-purple-900 mb-3">
           ¿Confirmas tu asistencia?
         </label>
         <div className="flex gap-4">
@@ -85,8 +85,8 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
             onClick={() => setAttending(true)}
             className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all ${
               attending === true
-                ? 'bg-rose-600 text-white shadow-lg'
-                : 'bg-white border border-rose-200 text-rose-900 hover:bg-rose-50'
+                ? 'bg-purple-600 text-white shadow-lg'
+                : 'bg-white border border-purple-200 text-purple-900 hover:bg-purple-50'
             }`}
           >
             Sí, asistiré
@@ -107,7 +107,7 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
 
       {attending === true && (
         <div>
-          <label htmlFor="numberOfGuests" className="block text-sm font-medium text-rose-900 mb-2">
+          <label htmlFor="numberOfGuests" className="block text-sm font-medium text-purple-900 mb-2">
             Número de asistentes
           </label>
           <input
@@ -118,7 +118,7 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
             value={numberOfGuests}
             onChange={(e) => setNumberOfGuests(parseInt(e.target.value))}
             required
-            className="w-full px-4 py-3 border border-rose-200 rounded-lg focus:ring-2 focus:ring-rose-300 focus:border-transparent"
+            className="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent"
           />
           <p className="text-sm text-gray-500 mt-2">
             Indica el número total de personas que asistirán (máximo {maxGuests})
@@ -129,7 +129,7 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
       <button
         type="submit"
         disabled={attending === null || isSubmitting}
-        className="w-full bg-rose-600 text-white py-4 px-6 rounded-lg font-medium text-lg hover:bg-rose-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg"
+        className="w-full bg-purple-600 text-white py-4 px-6 rounded-lg font-medium text-lg hover:bg-purple-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg"
       >
         {isSubmitting ? 'Enviando...' : 'Enviar confirmación'}
       </button>

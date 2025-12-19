@@ -90,7 +90,7 @@ export default function RSVPsList({ onUpdate }: RSVPsListProps) {
           onClick={() => setFilter('all')}
           className={`px-4 py-2 rounded-lg transition ${
             filter === 'all'
-              ? 'bg-rose-600 text-white'
+              ? 'bg-purple-600 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
