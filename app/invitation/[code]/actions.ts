@@ -10,10 +10,12 @@ export async function confirmRSVP(
   const { error } = await supabase.from('rsvps').insert({
     invitation_id: invitationId,
     confirmed_guests: confirmedGuests,
-    attending: true
+    attending: confirmedGuests > 0
   })
   
   if (error) {
     throw new Error(error.message)
   }
+  
+  return { success: true }
 }

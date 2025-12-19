@@ -1,18 +1,40 @@
 'use client';
 
 import { useState } from 'react';
+import { confirmRSVP } from '../invitation/[code]/actions';
 
-export default function RSVPForm() {
-  const [guestName, setGuestName] = useState('');
+type RSVPFormProps = {
+  invitationId: string;
+  maxGuests: number;
+  guestName: string;
+};
+
+export default function RSVPForm({ invitationId, maxGuests, guestName: initialGuestName }: RSVPFormProps) {
+  const [guestName, setGuestName] = useState(initialGuestName);
   const [numberOfGuests, setNumberOfGuests] = useState(1);
   const [attending, setAttending] = useState<boolean | null>(null);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí irá la lógica de backend más adelante
-    console.log({ guestName, numberOfGuests, attending });
-    setSubmitted(true);
+    setError(null);
+    setIsSubmitting(true);
+
+    try {
+      if (attending) {
+        await confirmRSVP(invitationId, numberOfGuests);
+      } else {
+        await confirmRSVP(invitationId, 0);
+      }
+      setSubmitted(true);
+    } catch (err) {
+      setError('Hubo un error al enviar tu confirmación. Por favor intenta de nuevo.');
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -31,6 +53,12 @@ export default function RSVPForm() {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+          {error}
+        </div>
+      )}
+      
       <div>
         <label htmlFor="guestName" className="block text-sm font-medium text-rose-900 mb-2">
           Nombre del invitado
@@ -41,7 +69,8 @@ export default function RSVPForm() {
           value={guestName}
           onChange={(e) => setGuestName(e.target.value)}
           required
-          className="w-full px-4 py-3 border border-rose-200 rounded-lg focus:ring-2 focus:ring-rose-300 focus:border-transparent"
+          disabled
+          className="w-full px-4 py-3 border border-rose-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed"
           placeholder="Tu nombre completo"
         />
       </div>
@@ -85,24 +114,24 @@ export default function RSVPForm() {
             type="number"
             id="numberOfGuests"
             min="1"
-            max="10"
+            max={maxGuests}
             value={numberOfGuests}
             onChange={(e) => setNumberOfGuests(parseInt(e.target.value))}
             required
             className="w-full px-4 py-3 border border-rose-200 rounded-lg focus:ring-2 focus:ring-rose-300 focus:border-transparent"
           />
           <p className="text-sm text-gray-500 mt-2">
-            Indica el número total de personas que asistirán
+            Indica el número total de personas que asistirán (máximo {maxGuests})
           </p>
         </div>
       )}
 
       <button
         type="submit"
-        disabled={attending === null}
+        disabled={attending === null || isSubmitting}
         className="w-full bg-rose-600 text-white py-4 px-6 rounded-lg font-medium text-lg hover:bg-rose-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg"
       >
-        Enviar confirmación
+        {isSubmitting ? 'Enviando...' : 'Enviar confirmación'}
       </button>
     </form>
   );
