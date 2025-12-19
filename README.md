@@ -1,36 +1,138 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Wedding Invitation System - Viely & Tony
 
-## Getting Started
+Sistema de invitaciones digitales para bodas con panel de administración.
 
-First, run the development server:
+## 🚀 Inicio Rápido
 
+### 1. Instalación
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Configurar Variables de Entorno
+Crea un archivo `.env.local`:
+```env
+NEXT_PUBLIC_SUPABASE_URL=tu_url_de_supabase
+NEXT_PUBLIC_SUPABASE_ANON_KEY=tu_anon_key_de_supabase
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Configurar Supabase
+Sigue la guía completa en [SUPABASE_CONFIG.md](./SUPABASE_CONFIG.md)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Iniciar el Servidor
+```bash
+npm run dev
+```
 
-## Learn More
+Visita:
+- Invitaciones: `http://localhost:3000/invitation/[codigo]`
+- Panel Admin: `http://localhost:3000/admin/login`
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Estructura del Proyecto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+app/
+├── admin/                    # Panel de administración
+│   ├── login/               # Login con magic link
+│   ├── components/          # Componentes del admin
+│   │   ├── StatsCards.tsx   # Tarjetas de estadísticas
+│   │   ├── InvitationsList.tsx  # Lista de invitaciones
+│   │   └── RSVPsList.tsx    # Lista de RSVPs
+│   ├── layout.tsx           # Layout del admin
+│   └── page.tsx             # Dashboard principal
+├── invitation/[code]/       # Invitaciones personalizadas
+├── components/              # Componentes compartidos
+├── lib/                     # Utilidades
+│   ├── supabase.ts         # Cliente Supabase (legacy)
+│   ├── supabase-client.ts  # Cliente para componentes
+│   ├── supabase-server.ts  # Cliente para server components
+│   └── supabase-middleware.ts  # Middleware de auth
+└── middleware.ts            # Middleware global de Next.js
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🔐 Autenticación
 
-## Deploy on Vercel
+El sistema usa **Supabase Auth** con **Email & Password**:
+- Login clásico con email y contraseña
+- Sesiones manejadas automáticamente con cookies
+- Rutas protegidas con middleware
+- Logout funcional
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 📊 Base de Datos
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Tabla: `invitations`
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| id | uuid | ID único |
+| code | text | Código único de invitación |
+| guest_name | text | Nombre del invitado |
+| type | text | Tipo: individual/pareja/familia |
+| max_guests | int4 | Máximo de invitados permitidos |
+| estimated_guests | int4 | Estimación de asistentes |
+| created_at | timestamp | Fecha de creación |
+
+### Tabla: `rsvps`
+| Campo | Tipo | Descripción |
+|-------|------|-------------|
+| id | uuid | ID único |
+| invitation_id | uuid | Referencia a invitación |
+| confirmed_guests | int4 | Número de invitados confirmados |
+| attending | bool | Si asisten o no |
+| created_at | timestamp | Fecha de confirmación |
+
+## 🎨 Características
+
+### Panel Admin
+- ✅ Dashboard con estadísticas en tiempo real
+- ✅ Gestión de invitaciones (crear, eliminar, copiar links)
+- ✅ Seguimiento de RSVPs
+- ✅ Filtros y búsqueda
+- ✅ Autenticación con magic link
+
+### Sistema de Invitaciones
+- ✅ URLs únicas por invitado
+- ✅ Formulario de confirmación (RSVP)
+- ✅ Contador de días hasta la boda
+- ✅ Diseño responsive y elegante
+
+## 🛠️ Tecnologías
+
+- **Framework:** Next.js 16 (App Router)
+- **Autenticación:** Supabase Auth
+- **Base de Datos:** Supabase (PostgreSQL)
+- **Estilos:** Tailwind CSS 4
+- **Lenguaje:** TypeScript
+- **Fuentes:** Playfair Display, Lato
+
+## 📝 Scripts Disponibles
+
+```bash
+npm run dev      # Servidor de desarrollo
+npm run build    # Build para producción
+npm run start    # Servidor de producción
+npm run lint     # Linter
+```
+
+## 🔒 Seguridad
+
+- Row Level Security (RLS) habilitado
+- Políticas de acceso configuradas
+- Rutas admin protegidas con middleware
+- Autenticación sin contraseñas
+
+## 📖 Guías
+
+- [Configuración de Supabase](./SUPABASE_CONFIG.md) - Guía completa de setup
+
+## 🎯 Próximas Mejoras
+
+- [ ] Export de lista de invitados (CSV/Excel)
+- [ ] Envío masivo de invitaciones por email
+- [ ] Gráficas de confirmaciones
+- [ ] Mensajes personalizados por invitación
+- [ ] Sistema de mesas/asignación
+
+## 📄 Licencia
+
+Proyecto privado - Viely & Tony Wedding
+
