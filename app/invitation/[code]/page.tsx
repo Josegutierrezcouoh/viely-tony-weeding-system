@@ -24,7 +24,7 @@ export default async function InvitationPage({ params }: PageProps) {
     .eq('code', code)
     .single()
 
-  const rsvp = invitation.rsvps
+  const rsvp = invitation?.rsvps
   const hasResponded = !!rsvp
 
 
