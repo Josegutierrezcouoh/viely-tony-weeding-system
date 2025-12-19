@@ -13,9 +13,21 @@ export default async function InvitationPage({ params }: PageProps) {
   const { code } = await params
   const { data: invitation, error } = await supabase
     .from('invitations')
-    .select('*')
+    .select(`
+    *,
+    rsvps (
+      confirmed_guests,
+      attending,
+      created_at
+    )
+  `)
     .eq('code', code)
     .single()
+
+  const rsvp = invitation.rsvps
+  const hasResponded = !!rsvp
+
+
 
   if (error || !invitation) {
     return (
@@ -82,7 +94,7 @@ export default async function InvitationPage({ params }: PageProps) {
           <h2 className="text-4xl md:text-5xl font-serif text-rose-900 text-center mb-12">
             Ceremonia de Boda
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-8 mb-12">
             <div className="bg-gradient-to-br from-rose-50 to-white p-8 rounded-lg shadow-lg border border-rose-100">
               <div className="flex items-center mb-4">
@@ -265,25 +277,42 @@ export default async function InvitationPage({ params }: PageProps) {
       {/* RSVP */}
       <section className="py-16 bg-gradient-to-b from-rose-50 to-white">
         <div className="max-w-6xl mx-auto px-4">
-          <h2 className="text-4xl md:text-5xl font-serif text-rose-900 text-center mb-4">
-            Confirma tu Asistencia
-          </h2>
-          <p className="text-center text-gray-600 mb-12 text-lg">
-            Por favor, confirma tu asistencia antes del 20 de diciembre de 2025
-          </p>
-          <div className="bg-white rounded-xl shadow-xl p-8 border-2 border-rose-100 max-w-2xl mx-auto">
-            <div className="mb-6 text-center">
-              <p className="text-rose-900 text-lg">
-                Cupos disponibles para <strong>{invitation.guest_name}</strong>:
-              </p>
-              <p className="text-4xl font-bold text-rose-600 mt-2">{invitation.max_guests}</p>
-            </div>
-            <RSVPForm 
+          {!hasResponded ? (
+            <RSVPForm
               invitationId={invitation.id}
               maxGuests={invitation.max_guests}
               guestName={invitation.guest_name}
             />
-          </div>
+          ) : (
+            <div className="text-center py-12">
+              <div className="inline-block bg-green-50 border-2 border-green-200 rounded-lg p-8 max-w-md">
+                <svg className="w-16 h-16 text-green-500 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+
+                {rsvp.attending ? (
+                  <>
+                    <h3 className="text-2xl font-serif text-rose-900 mb-2">
+                      ¡Gracias por confirmar!
+                    </h3>
+                    <p className="text-gray-700">
+                      Confirmaste <strong>{rsvp.confirmed_guests}</strong> personas.
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h3 className="text-2xl font-serif text-gray-800 mb-2">
+                      Respuesta registrada
+                    </h3>
+                    <p className="text-gray-600">
+                      Lamentamos que no puedas acompañarnos 💐
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+          )}
+
         </div>
       </section>
 
