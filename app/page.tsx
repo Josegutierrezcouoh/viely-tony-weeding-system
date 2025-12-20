@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Countdown from "./components/Countdown";
-import RSVPForm from "./components/RSVPForm";
 
 export default function Home() {
   return (
@@ -238,7 +237,6 @@ export default function Home() {
           <p className="text-center text-gray-600 mb-12 text-lg">
             Por favor, confirma tu asistencia antes del 20 de diciembre de 2025
           </p>
-          <RSVPForm />
         </div>
       </section>
 
