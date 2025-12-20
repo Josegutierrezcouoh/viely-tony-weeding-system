@@ -1,8 +1,17 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: 'FleurDeLeah';
+  src: url('/fonts/FleurDeLeah-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --font-fleur: 'FleurDeLeah', cursive;
 }
 
 @theme inline {
@@ -10,6 +19,7 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-lato);
   --font-serif: var(--font-playfair);
+  --font-fleur: var(--font-fleur);
 }
 
 body {
