@@ -31,7 +31,7 @@ export default function Countdown() {
   }, []);
 
   return (
-    <div className="w-full py-16 bg-linear-to-b from-purple-50 to-white">
+    <div className="w-full py-16 bg-linear-to-b from-purple-50 to-white bg-[url('/pattern.png')] bg-repeat">
       <div className="max-w-6xl mx-auto px-4">
         <h2 className="text-center text-3xl md:text-4xl font-serif text-purple-900 mb-8">
           Faltan
