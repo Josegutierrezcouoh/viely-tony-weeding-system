@@ -51,7 +51,7 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
                         onClick={handleOpen}
                         className='rounded-full size-20 mt-20 bg-white text-xs hover:bg-amber-600 transition-colors'
                     >
-                        13.01.2026
+                        02.01.2026
                     </button>
                 </div>
             </div>
