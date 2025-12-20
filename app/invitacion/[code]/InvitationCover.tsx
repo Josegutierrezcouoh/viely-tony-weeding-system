@@ -46,6 +46,13 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
     const handleOpen = () => {
         setIsOpen(true)
         audioRef.current?.play()
+        
+        // Solicitar pantalla completa
+        if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen().catch(err => {
+                console.log('Error al intentar entrar en pantalla completa:', err)
+            })
+        }
     }
 
     const toggleMute = () => {
