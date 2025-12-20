@@ -126,6 +126,12 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
         </div>
       )}
 
+      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+        <p className="text-sm text-amber-800 text-center">
+          ⚠️ Después de enviar tu respuesta no podrás modificarla
+        </p>
+      </div>
+
       <button
         type="submit"
         disabled={attending === null || isSubmitting}
