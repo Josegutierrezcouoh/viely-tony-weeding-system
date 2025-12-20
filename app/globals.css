@@ -8,27 +8,36 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Quintessential';
+  src: url('/fonts/Quintessential-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
   --font-fleur: 'FleurDeLeah', cursive;
+  --font-quintessential: 'Quintessential', cursive;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-lato);
-  --font-serif: var(--font-playfair);
+  --font-sans: var(--font-quintessential);
+  --font-serif: var(--font-quintessential);
   --font-fleur: var(--font-fleur);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-lato), Arial, Helvetica, sans-serif;
+  font-family: var(--font-quintessential), Arial, Helvetica, sans-serif;
 }
 
 .font-serif {
-  font-family: var(--font-playfair), Georgia, serif;
+  font-family: var(--font-quintessential), Georgia, serif;
 }
 

@@ -25,7 +25,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/WhatsApp Image 2025-09-18 at 7.13.31 PM (1).jpeg"
+            src="/img/01_nuestra_historia.jpeg"
             alt="Viely y Tony"
             fill
             className="object-cover opacity-20"
