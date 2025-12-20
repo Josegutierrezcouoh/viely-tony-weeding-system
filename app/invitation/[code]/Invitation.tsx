@@ -326,7 +326,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
                 <svg className="w-8 h-8 text-[#8A048C] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                 </svg>
-                <h3 className="text-2xl font-serif text-[#73026B]">Datos de Transferencia</h3>
+                <h3 className="text-2xl font-serif text-[#73026B] text-center">Datos de Transferencia</h3>
               </div>
               <div className="space-y-3 text-center">
                 <div>
@@ -349,7 +349,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
 
       {/* Footer */}
       <footer className="bg-[#73026B] text-white py-12">
-        <div className="max-w-6xl mx-auto px-4 text-center">
+        <div className="max-w-6xl mx-auto px-4 text-center mb-12">
           <div className="mb-6">
             <svg className="w-12 h-12 text-white/70 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />

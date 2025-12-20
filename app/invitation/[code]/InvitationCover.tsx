@@ -63,7 +63,7 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
             {isOpen && (
                 <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 bg-amber-900/80 backdrop-blur-sm px-3 py-2 rounded-full flex items-center gap-3'>
                     <Image 
-                        src='/hasta mi final.jpg' 
+                        src='/hasta_mi_final.jpg' 
                         alt='Cover' 
                         className='w-10 h-10 rounded-full object-cover'
                         width={100}
