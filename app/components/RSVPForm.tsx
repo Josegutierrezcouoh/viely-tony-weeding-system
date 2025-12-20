@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { confirmRSVP } from '../invitation/[code]/actions';
+import { confirmRSVP } from '../invitacion/[code]/actions';
 
 type RSVPFormProps = {
   invitationId: string;

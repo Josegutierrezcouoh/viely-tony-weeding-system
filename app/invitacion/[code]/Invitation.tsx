@@ -23,7 +23,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
   const hasResponded = !!rsvp
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-purple-300 to-[#73026B]/5 ">
+    <div className="min-h-screen bg-linear-to-b from-purple-300 to-[red]/5 ">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden ">
         <div className="absolute inset-0 z-0">
@@ -66,13 +66,13 @@ export default function Invitation({ invitation }: InvitationContentProps) {
               Acompáñanos
             </p>
 
-          pase para {rsvp ? (
-            <>
-              {invitation.max_guests} invitado(s)
-            </>
-          ) : (
-            "No ha confirmado asistencia"
-          )}
+             Pase para {invitation ? (
+              <>
+                {invitation.max_guests} invitado(s)
+              </>
+            ) : (
+              "No ha confirmado asistencia"
+            )}
           </div>
         </div>
       </section>
@@ -115,6 +115,21 @@ export default function Invitation({ invitation }: InvitationContentProps) {
             </InfoCard>
           </div>
 
+          {/* Código de Vestimenta */}
+          <div className="mb-12">
+            <InfoCard
+              icon={
+                <svg className="w-8 h-8 text-[#8A048C] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+              }
+              title="Código de Vestimenta"
+              className="max-w-2xl mx-auto"
+            >
+              <p className="text-xl font-medium text-gray-700">Formal / Semi-formal</p>
+            </InfoCard>
+          </div>
+
           {/* Iglesia */}
           <div className="mb-12">
             <InfoCard
@@ -132,16 +147,21 @@ export default function Invitation({ invitation }: InvitationContentProps) {
 
           {/* Novios */}
           <div className="mb-12 text-center">
+
             <h3 className="text-3xl font-serif text-[#73026B] mb-6">Los Novios</h3>
-            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
-              <SimpleCard>
-                <p className="text-xl text-gray-800">Argimiro Antonio Ávila Manzanilla</p>
-              </SimpleCard>
-              <SimpleCard>
-                <p className="text-xl text-gray-800">Viely Rosaura Pacab Canul</p>
-              </SimpleCard>
+            <div className="flex flex-row items-center justify-center mb-8">
+              <Image src={"/white_rose.png"} alt={""} width={100} height={100} className="scale-x-[-1]" />
+              
+              <Image src={"/white_rose.png"} alt={""} width={100} height={100} />
             </div>
+            <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              <p className="text-4xl text-gray-800 wrap-break-word" style={{ fontFamily: 'var(--font-fleur)' }}>Argimiro Antonio <br /> Ávila Manzanilla</p>
+              <p className="text-4xl text-gray-800 wrap-break-word" style={{ fontFamily: 'var(--font-fleur)' }}>Viely Rosaura <br /> Pacab Canul</p>
+            </div>
+
           </div>
+
+
 
           {/* Padres */}
           <div className="grid md:grid-cols-2 gap-8 mb-12">
@@ -161,7 +181,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
               <p>Genaro Montalvo Montalvo</p>
               <p>María del Rosario Cabrera Fuentes</p>
             </SectionCard>
-            <SectionCard title="Padrinos de la Novia">
+            <SectionCard title="Padrinos de la Novia" roseNumber={4}>
               <p>Eduardo Raúl Pacab Chan</p>
               <p>Landy María May Couoh</p>
             </SectionCard>
@@ -201,6 +221,9 @@ export default function Invitation({ invitation }: InvitationContentProps) {
             <div className="grid md:grid-cols-2 gap-4 max-w-2xl mx-auto">
               <p className="text-gray-800 p-4">Adam Antonio Ávila Pacab</p>
               <p className="text-gray-800 p-4">Ingrid Daniela Rojas Pacab</p>
+            </div>
+            <div className="flex flex-row items-center justify-center mb-8">
+              <Image src={"/petalos.png"} alt={""} width={100} height={100} />
             </div>
           </div>
         </div>
@@ -248,8 +271,10 @@ export default function Invitation({ invitation }: InvitationContentProps) {
             Ubicación
           </h2>
           <div className="rounded-lg overflow-hidden shadow-2xl border-4 border-[#73026B]/20">
+
+
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0965364977676!2d-89.61789!3d21.00000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDAwJzAwLjAiTiA4OcKwMzcnMDQuNCJX!5e0!3m2!1ses!2smx!4v1234567890"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d936.0278344202555!2d-89.28235096684233!3d20.212693954283314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f57053dacf0187b%3A0xf5479fdfba6e03e5!2sQuinta%20Paraiso!5e0!3m2!1sen!2smx!4v1766207059143!5m2!1sen!2smx"
               width="100%"
               height="450"
               style={{ border: 0 }}
@@ -261,7 +286,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
           </div>
           <div className="text-center mt-6">
             <a
-              href="https://www.google.com/maps/search/Quinta+el+Para%C3%ADso"
+              href="https://maps.app.goo.gl/o4siwukbxyZBvsUP7"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block bg-[#8A048C] text-white px-8 py-3 rounded-lg font-medium hover:bg-[#73026B] transition-colors shadow-lg"
@@ -273,7 +298,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
       </section>
 
       {/* RSVP */}
-      <section className="py-16 bg-linear-to-b from-[#73026B]/5 to-white">
+      <section id="rsvp-section" className="py-16 bg-linear-to-b from-[#73026B]/5 to-white">
         <div className="max-w-6xl mx-auto px-4">
           {!hasResponded ? (
             <RSVPForm

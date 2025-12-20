@@ -50,7 +50,7 @@ export default function InvitationsList({ onUpdate }: InvitationsListProps) {
   )
 
   const copyInvitationLink = (code: string) => {
-    const url = `${window.location.origin}/invitation/${code}`
+    const url = `${window.location.origin}/invitacion/${code}`
     navigator.clipboard.writeText(url)
     alert('¡Link copiado al portapapeles!')
   }

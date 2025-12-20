@@ -204,16 +204,16 @@ export default function Home() {
             Ubicación
           </h2>
           <div className="rounded-lg overflow-hidden shadow-2xl border-4 border-purple-100">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.0965364977676!2d-89.61789!3d21.00000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjHCsDAwJzAwLjAiTiA4OcKwMzcnMDQuNCJX!5e0!3m2!1ses!2smx!4v1234567890"
-              width="100%"
-              height="450"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              className="w-full"
-            ></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!4v1766206840288!6m8!1m7!1snROzHZYqgAf00jUSp2Qknw!2m2!1d20.21249762588238!2d-89.28216857662932!3f14.502567001060848!4f-3.34488861823975!5f0.7820865974627469"
+            width="600"
+            height="450"
+            // style="border:0;"
+            // allowfullscreen=""
+            loading="lazy" 
+            // referrerpolicy="no-referrer-when-downgrade"
+            >
+              
+            </iframe>
           </div>
           <div className="text-center mt-6">
             <a
