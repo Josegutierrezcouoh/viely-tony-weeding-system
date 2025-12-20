@@ -4,8 +4,19 @@ import { useState, useRef } from 'react'
 import Invitation from './Invitation'
 import Image from 'next/image'
 
+interface Invitation {
+    id: string
+    guest_name: string
+    max_guests: number
+    rsvps?: {
+        confirmed_guests: number
+        attending: boolean
+        created_at: string
+    }
+}
+
 interface InvitationCoverProps {
-    invitation: any
+    invitation: Invitation
 }
 
 export default function InvitationCover({ invitation }: InvitationCoverProps) {
