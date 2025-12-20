@@ -43,14 +43,16 @@ export default function Invitation({ invitation }: InvitationContentProps) {
               </svg>
             </div>
           </div>
-          <h1 className="text-6xl md:text-8xl text-[#73026B] mb-6 leading-tight" style={{ fontFamily: 'var(--font-fleur)' }}>
+          <h1 className="text-6xl md:text-8xl text-[#73026B] mb-6 leading-tight shine-text" style={{ fontFamily: 'var(--font-fleur)' }}>
             Viely & Tony
           </h1>
-          <div className="w-24 h-1 bg-[#8A048C] mx-auto mb-6"></div>
-          <p className="text-xl md:text-2xl text-[#73026B] mb-4 font-light tracking-wide">
+          <div className="w-24 h-1 bg-[#8A048C] mx-auto mb-6 relative overflow-hidden">
+            <div className="absolute inset-0 shine-effect"></div>
+          </div>
+          <p className="text-xl md:text-2xl text-[#73026B] mb-4 font-light tracking-wide shine-text">
             Nos casamos
           </p>
-          <p className="text-4xl md:text-5xl text-[#73026B] mb-8" style={{ fontFamily: 'var(--font-fleur)' }}>
+          <p className="text-4xl md:text-5xl text-[#73026B] mb-8 shine-text" style={{ fontFamily: 'var(--font-fleur)' }}>
             02 de Enero, 2026
           </p>
           <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-xl border-2 border-[#8A048C]/30 inline-block">
@@ -64,7 +66,13 @@ export default function Invitation({ invitation }: InvitationContentProps) {
               Acompáñanos
             </p>
 
-
+          pase para {rsvp ? (
+            <>
+              {invitation.max_guests} invitado(s)
+            </>
+          ) : (
+            "No ha confirmado asistencia"
+          )}
           </div>
         </div>
       </section>
