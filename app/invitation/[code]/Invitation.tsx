@@ -210,14 +210,19 @@ export default function Invitation({ invitation }: InvitationContentProps) {
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {[
-              "WhatsApp Image 2025-09-18 at 7.13.31 PM.jpeg",
-              "WhatsApp Image 2025-09-18 at 7.13.32 PM (1).jpeg",
-              "WhatsApp Image 2025-09-18 at 7.13.32 PM (2).jpeg",
-              "WhatsApp Image 2025-09-18 at 7.13.32 PM (3).jpeg",
-              "WhatsApp Image 2025-09-18 at 7.13.35 PM (1).jpeg",
-              "WhatsApp Image 2025-09-18 at 7.13.35 PM (2).jpeg",
-              "WhatsApp Image 2025-09-18 at 7.13.36 PM (1).jpeg",
-              "WhatsApp Image 2025-09-18 at 7.13.37 PM.jpeg",
+              "01_nuestra_historia.jpeg",
+              "02_nuestra_historia.jpeg",
+              "03_nuestra_historia.jpeg",
+              "04_nuestra_historia.jpeg",
+              "06_nuestra_historia.jpeg",
+              "07_nuestra_historia.jpeg",
+              "08_nuestra_historia.jpeg",
+              "09_nuestra_historia.jpeg",
+              "10_nuestra_historia.jpeg",
+              "13_nuestra_historia.jpeg",
+              "14_nuestra_historia.jpeg",
+              "16_nuestra_historia.jpeg",
+              
             ].map((img, index) => (
               <div key={index} className="relative aspect-square overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-shadow">
                 <Image
