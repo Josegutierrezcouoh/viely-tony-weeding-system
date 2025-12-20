@@ -97,6 +97,19 @@ export default function Invitation({ invitation }: InvitationContentProps) {
             </div>
           </div>
 
+          {/* Iglesia */}
+          <div className="mb-12">
+            <div className="bg-linear-to-br from-[#73026B]/5 to-white p-8 rounded-lg shadow-lg border border-[#73026B]/20 max-w-2xl mx-auto">
+              <div className="flex items-center mb-4">
+                <svg className="w-8 h-8 text-[#8A048C] mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                </svg>
+                <h3 className="text-2xl font-serif text-[#73026B]">Ceremonia Religiosa</h3>
+              </div>
+              <p className="text-xl font-medium text-gray-700">Iglesia San Juan Bautista</p>
+            </div>
+          </div>
+
           {/* Novios */}
           <div className="mb-12 text-center">
             <h3 className="text-3xl font-serif text-[#73026B] mb-6">Los Novios</h3>
@@ -289,6 +302,43 @@ export default function Invitation({ invitation }: InvitationContentProps) {
             </div>
           )}
 
+        </div>
+      </section>
+
+      {/* Obsequios */}
+      <section className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-5xl md:text-6xl text-[#73026B] text-center mb-8" style={{ fontFamily: 'var(--font-fleur)' }}>
+            Obsequios
+          </h2>
+          <div className="bg-linear-to-br from-[#73026B]/5 to-white p-8 rounded-lg shadow-lg border border-[#73026B]/20">
+            <p className="text-center text-gray-700 text-lg mb-8">
+              Para nosotros tu presencia será lo más importante, pero si deseas darnos un obsequio con gusto te aceptamos un sobre o una transferencia.
+            </p>
+            
+            <div className="bg-white p-6 rounded-lg shadow-md border border-[#8A048C]/30 max-w-md mx-auto">
+              <div className="flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-[#8A048C] mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
+                </svg>
+                <h3 className="text-2xl font-serif text-[#73026B]">Datos de Transferencia</h3>
+              </div>
+              <div className="space-y-3 text-center">
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Tarjeta</p>
+                  <p className="text-xl font-mono font-medium text-gray-800">5256 7821 2303 4095</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Banco</p>
+                  <p className="text-lg font-medium text-gray-800">Banamex</p>
+                </div>
+                <div>
+                  <p className="text-sm text-gray-600 mb-1">Titular</p>
+                  <p className="text-lg font-medium text-gray-800">Viely Rosaura Pacab Canul</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
