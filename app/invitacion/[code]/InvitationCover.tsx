@@ -89,9 +89,9 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
                     {/* button then show invitation */}
                     <button
                         onClick={handleOpen}
-                        className='rounded-full size-20 mt-16 bg-[url(/gold.png)] text-xs bg-contain bg-center'
+                        className='rounded-full size-20 mt-20 bg-[url(/gold.png)] text-xs bg-contain bg-center'
                     >
-                        Toca
+                        Toca aquí
                         <br />
                         para abrir
                     </button>
