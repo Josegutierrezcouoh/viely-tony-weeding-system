@@ -28,7 +28,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden ">
         <div className="absolute inset-0 z-0">
           <Image
-            src="/img/01_nuestra_historia.jpeg"
+            src="/img/02_nuestra_historia.jpeg"
             alt="Viely y Tony"
             fill
             className="object-cover opacity-20"
