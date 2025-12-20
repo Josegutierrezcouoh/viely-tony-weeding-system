@@ -23,6 +23,8 @@ export default function InvitationsList({ onUpdate }: InvitationsListProps) {
   const [loading, setLoading] = useState(true)
   const [searchTerm, setSearchTerm] = useState('')
   const [showAddModal, setShowAddModal] = useState(false)
+  const [showEditModal, setShowEditModal] = useState(false)
+  const [editingInvitation, setEditingInvitation] = useState<Invitation | null>(null)
 
   useEffect(() => {
     loadInvitations()
@@ -72,6 +74,11 @@ export default function InvitationsList({ onUpdate }: InvitationsListProps) {
       console.error('Error deleting invitation:', error)
       alert('Error al eliminar la invitación')
     }
+  }
+
+  const handleEdit = (invitation: Invitation) => {
+    setEditingInvitation(invitation)
+    setShowEditModal(true)
   }
 
   if (loading) {
@@ -147,6 +154,13 @@ export default function InvitationsList({ onUpdate }: InvitationsListProps) {
                     🔗
                   </button>
                   <button
+                    onClick={() => handleEdit(invitation)}
+                    className="text-green-600 hover:text-green-800"
+                    title="Editar"
+                  >
+                    ✏️
+                  </button>
+                  <button
                     onClick={() => handleDelete(invitation.id)}
                     className="text-red-600 hover:text-red-800"
                     title="Eliminar"
@@ -173,6 +187,22 @@ export default function InvitationsList({ onUpdate }: InvitationsListProps) {
             loadInvitations()
             onUpdate()
             setShowAddModal(false)
+          }}
+        />
+      )}
+
+      {showEditModal && editingInvitation && (
+        <EditInvitationModal
+          invitation={editingInvitation}
+          onClose={() => {
+            setShowEditModal(false)
+            setEditingInvitation(null)
+          }}
+          onSuccess={() => {
+            loadInvitations()
+            onUpdate()
+            setShowEditModal(false)
+            setEditingInvitation(null)
           }}
         />
       )}
@@ -294,6 +324,139 @@ function AddInvitationModal({ onClose, onSuccess }: { onClose: () => void, onSuc
               className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition disabled:opacity-50"
             >
               {loading ? 'Creando...' : 'Crear'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  )
+}
+
+// Modal para editar invitación
+function EditInvitationModal({ 
+  invitation, 
+  onClose, 
+  onSuccess 
+}: { 
+  invitation: Invitation
+  onClose: () => void
+  onSuccess: () => void 
+}) {
+  const supabase = createClient()
+  const [formData, setFormData] = useState({
+    guest_name: invitation.guest_name,
+    type: invitation.type,
+    max_guests: invitation.max_guests,
+    estimated_guests: invitation.estimated_guests
+  })
+  const [loading, setLoading] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    setLoading(true)
+
+    try {
+      const { error } = await supabase
+        .from('invitations')
+        .update(formData)
+        .eq('id', invitation.id)
+      
+      if (error) throw error
+      onSuccess()
+    } catch (error) {
+      console.error('Error updating invitation:', error)
+      alert('Error al actualizar la invitación')
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
+      <div className="bg-white rounded-lg max-w-md w-full p-6">
+        <h2 className="text-2xl font-serif text-purple-900 mb-4">Editar Invitación</h2>
+        
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Nombre del Invitado
+            </label>
+            <input
+              type="text"
+              required
+              value={formData.guest_name}
+              onChange={(e) => setFormData({...formData, guest_name: e.target.value})}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Tipo
+            </label>
+            <select
+              value={formData.type}
+              onChange={(e) => setFormData({...formData, type: e.target.value})}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+            >
+              <option value="individual">Individual</option>
+              <option value="pareja">Pareja</option>
+              <option value="familia">Familia</option>
+            </select>
+          </div>
+
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Máximo Invitados
+              </label>
+              <input
+                type="number"
+                min="1"
+                required
+                value={formData.max_guests}
+                onChange={(e) => setFormData({...formData, max_guests: parseInt(e.target.value)})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Estimado
+              </label>
+              <input
+                type="number"
+                min="1"
+                required
+                value={formData.estimated_guests}
+                onChange={(e) => setFormData({...formData, estimated_guests: parseInt(e.target.value)})}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="bg-gray-50 p-3 rounded-lg">
+            <p className="text-sm text-gray-600">
+              <strong>Código:</strong> <code className="bg-white px-2 py-1 rounded">{invitation.code}</code>
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              El código no se puede modificar
+            </p>
+          </div>
+
+          <div className="flex gap-3 pt-4">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              disabled={loading}
+              className="flex-1 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition disabled:opacity-50"
+            >
+              {loading ? 'Guardando...' : 'Guardar Cambios'}
             </button>
           </div>
         </form>
