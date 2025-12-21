@@ -16,9 +16,14 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setShowConfirmModal(true);
+  };
+
+  const handleConfirmSubmit = async () => {
     setError(null);
     setIsSubmitting(true);
 
@@ -29,12 +34,18 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
         await confirmRSVP(invitationId, 0);
       }
       setSubmitted(true);
+      setShowConfirmModal(false);
     } catch (err) {
       setError('Hubo un error al enviar tu confirmación. Por favor intenta de nuevo.');
       console.error(err);
+      setShowConfirmModal(false);
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleModify = () => {
+    setShowConfirmModal(false);
   };
 
   if (submitted) {
@@ -52,93 +63,157 @@ export default function RSVPForm({ invitationId, maxGuests, guestName: initialGu
   }
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
-      {error && (
-        <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
-          {error}
-        </div>
-      )}
-      
-      <div>
-        <label htmlFor="guestName" className="block text-sm font-medium text-purple-900 mb-2">
-          Nombre del invitado
-        </label>
-        <input
-          type="text"
-          id="guestName"
-          value={guestName}
-          onChange={(e) => setGuestName(e.target.value)}
-          required
-          disabled
-          className="w-full px-4 py-3 border border-purple-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed"
-          placeholder="Tu nombre completo"
-        />
-      </div>
-
-      <div>
-        <label className="block text-sm font-medium text-purple-900 mb-3">
-          ¿Confirmas tu asistencia?
-        </label>
-        <div className="flex gap-4">
-          <button
-            type="button"
-            onClick={() => setAttending(true)}
-            className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all ${
-              attending === true
-                ? 'bg-purple-600 text-white shadow-lg'
-                : 'bg-white border border-purple-200 text-purple-900 hover:bg-purple-50'
-            }`}
-          >
-            Sí, asistiré
-          </button>
-          <button
-            type="button"
-            onClick={() => setAttending(false)}
-            className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all ${
-              attending === false
-                ? 'bg-gray-600 text-white shadow-lg'
-                : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
-            }`}
-          >
-            No podré asistir
-          </button>
-        </div>
-      </div>
-
-      {attending === true && (
+    <>
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto space-y-6">
+        {error && (
+          <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+            {error}
+          </div>
+        )}
+        
         <div>
-          <label htmlFor="numberOfGuests" className="block text-sm font-medium text-purple-900 mb-2">
-            Número de asistentes
+          <label htmlFor="guestName" className="block text-sm font-medium text-purple-900 mb-2">
+            Nombre del invitado
           </label>
           <input
-            type="number"
-            id="numberOfGuests"
-            min="1"
-            max={maxGuests}
-            value={numberOfGuests}
-            onChange={(e) => setNumberOfGuests(parseInt(e.target.value))}
+            type="text"
+            id="guestName"
+            value={guestName}
+            onChange={(e) => setGuestName(e.target.value)}
             required
-            className="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent"
+            disabled
+            className="w-full px-4 py-3 border border-purple-200 rounded-lg bg-gray-50 text-gray-700 cursor-not-allowed"
+            placeholder="Tu nombre completo"
           />
-          <p className="text-sm text-gray-500 mt-2">
-            Indica el número total de personas que asistirán (máximo {maxGuests})
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-purple-900 mb-3">
+            ¿Confirmas tu asistencia?
+          </label>
+          <div className="flex gap-4">
+            <button
+              type="button"
+              onClick={() => setAttending(true)}
+              className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all ${
+                attending === true
+                  ? 'bg-purple-600 text-white shadow-lg'
+                  : 'bg-white border border-purple-200 text-purple-900 hover:bg-purple-50'
+              }`}
+            >
+              Sí, asistiré
+            </button>
+            <button
+              type="button"
+              onClick={() => setAttending(false)}
+              className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all ${
+                attending === false
+                  ? 'bg-gray-600 text-white shadow-lg'
+                  : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
+              }`}
+            >
+              No podré asistir
+            </button>
+          </div>
+        </div>
+
+        {attending === true && (
+          <div>
+            <label htmlFor="numberOfGuests" className="block text-sm font-medium text-purple-900 mb-2">
+              Número de asistentes
+            </label>
+            <input
+              type="number"
+              id="numberOfGuests"
+              min="1"
+              max={maxGuests}
+              value={numberOfGuests}
+              onChange={(e) => setNumberOfGuests(parseInt(e.target.value))}
+              required
+              className="w-full px-4 py-3 border border-purple-200 rounded-lg focus:ring-2 focus:ring-purple-300 focus:border-transparent"
+            />
+            <p className="text-sm text-gray-500 mt-2">
+              Indica el número total de personas que asistirán (máximo {maxGuests})
+            </p>
+          </div>
+        )}
+
+        <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <p className="text-sm text-amber-800 text-center">
+            ⚠️ Después de enviar tu respuesta no podrás modificarla
           </p>
         </div>
+
+        <button
+          type="submit"
+          disabled={attending === null || isSubmitting}
+          className="w-full bg-purple-600 text-white py-4 px-6 rounded-lg font-medium text-lg hover:bg-purple-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg"
+        >
+          {isSubmitting ? 'Enviando...' : 'Enviar confirmación'}
+        </button>
+      </form>
+
+      {/* Modal de Confirmación */}
+      {showConfirmModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full p-8 shadow-2xl transform transition-all">
+            <div className="text-center mb-6">
+              <div className="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <svg className="w-8 h-8 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-2xl font-serif text-purple-900 mb-2">
+                Confirma tu asistencia
+              </h3>
+            </div>
+
+            {attending ? (
+              <div className="bg-purple-50 border-2 border-purple-200 rounded-lg p-6 mb-6">
+                <p className="text-center text-lg text-purple-900 mb-3">
+                  Confirmarás la asistencia de:
+                </p>
+                <div className="text-center">
+                  <span className="text-5xl font-bold text-purple-600">{numberOfGuests}</span>
+                  <span className="text-2xl text-purple-900 ml-2">/ {maxGuests}</span>
+                </div>
+                <p className="text-center text-sm text-purple-700 mt-2">
+                  {numberOfGuests === 1 ? 'invitado' : 'invitados'}
+                </p>
+              </div>
+            ) : (
+              <div className="bg-gray-50 border-2 border-gray-200 rounded-lg p-6 mb-6">
+                <p className="text-center text-lg text-gray-700">
+                  Confirmarás que <strong>no podrás asistir</strong> al evento
+                </p>
+              </div>
+            )}
+
+            <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6">
+              <p className="text-sm text-amber-800 text-center">
+                ⚠️ Esta acción no se puede deshacer
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3">
+              <button
+                onClick={handleConfirmSubmit}
+                disabled={isSubmitting}
+                className="w-full bg-purple-600 text-white py-4 px-6 rounded-lg font-medium text-lg hover:bg-purple-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg"
+              >
+                {isSubmitting ? 'Enviando...' : 'Confirmar y enviar'}
+              </button>
+              <button
+                onClick={handleModify}
+                disabled={isSubmitting}
+                className="w-full bg-white border-2 border-purple-600 text-purple-600 py-4 px-6 rounded-lg font-medium text-lg hover:bg-purple-50 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                Modificar número de asistentes
+              </button>
+            </div>
+          </div>
+        </div>
       )}
-
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-4">
-        <p className="text-sm text-amber-800 text-center">
-          ⚠️ Después de enviar tu respuesta no podrás modificarla
-        </p>
-      </div>
-
-      <button
-        type="submit"
-        disabled={attending === null || isSubmitting}
-        className="w-full bg-purple-600 text-white py-4 px-6 rounded-lg font-medium text-lg hover:bg-purple-700 transition-colors disabled:bg-gray-300 disabled:cursor-not-allowed shadow-lg"
-      >
-        {isSubmitting ? 'Enviando...' : 'Enviar confirmación'}
-      </button>
-    </form>
+    </>
   );
 }
