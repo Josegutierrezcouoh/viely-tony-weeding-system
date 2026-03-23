@@ -42,7 +42,6 @@ export default function AdminLogin() {
                         <h1 className="text-3xl font-serif text-purple-900 mb-2">
                             Panel Admin
                         </h1>
-                        <p className="text-gray-600">Viely & Tony Wedding</p>
                     </div>
 
                     <form onSubmit={handleLogin} className="space-y-6">

@@ -26,19 +26,19 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-quintessential);
-  --font-serif: var(--font-quintessential);
+  --font-sans: var(--font-lato);
+  --font-serif: var(--font-lato);
   --font-fleur: var(--font-fleur);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-quintessential), Arial, Helvetica, sans-serif;
+  font-family: var(--font-lato), Arial, Helvetica, sans-serif;
 }
 
 .font-serif {
-  font-family: var(--font-quintessential), Georgia, serif;
+  font-family: var(--font-lato), Arial, Helvetica, sans-serif;
 }
 
 /* Efecto de luz brillante tipo reflector */
@@ -106,5 +106,20 @@ body {
   background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: shineGold 4s ease-in-out infinite;
+}
+
+/* Animación de bola de disco */
+@keyframes discoRotate {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg);
+  }
+}
+
+.disco-ball {
+  animation: discoRotate 8s linear infinite;
+  filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.8));
 }
 

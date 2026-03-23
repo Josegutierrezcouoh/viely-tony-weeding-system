@@ -79,58 +79,92 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
     return (
         <div className=' h-screen overflow-y-scroll relative'>
             {/* cover */}
-            <div className={`overflow-hidden h-full w-full absolute inset-0 transition-all duration-1000 ${isOpen ? '-translate-y-full opacity-0' : 'translate-y-0 opacity-100'}`}>
-                <div className='h-full w-full bg-[url(/img.png)] bg-cover bg-center absolute top-0 left-0 z-20 scale-x-[-1]'>
-                </div>
-                <div className='w-full h-full bg-[url(/ribbon.png)] bg-cover bg-center z-30 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-x-[-1]'>
-                </div>
+{!isOpen && (
+<div className='relative w-full h-screen overflow-hidden bg-white'>
+  {/* Disco ball grande (top-right) */}
+  <img src="/disco_ball.png" alt="disco ball" loading="lazy"
+       className="absolute top-8 right-8 w-28 sm:w-40 transform rotate-6 z-30 drop-shadow-lg" />
 
-                <div className='w-1/2 h-1/6 sm:h-1/6 bg-[url(/white_rose.png)] bg-contain bg-no-repeat bg-center z-40 absolute top-[45%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 scale-x-[-1]'></div>
+  {/* Disco ball pequeño (right-lower) */}
+  <img src="/disco_ball.png" alt="disco ball small" loading="lazy"
+       className="absolute top-40 right-16 w-16 sm:w-20 transform -rotate-12 z-20 opacity-90" />
 
-                <div className='text-3xl shine-gold-text absolute top-[33%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40 text-center px-4'>
-                    Para {invitation.guest_name}
-                </div>
+    {/* Disco balls extra */}
+    <img src="/disco_ball.png" alt="disco ball left" loading="lazy"
+      className="absolute top-14 left-28 w-16 sm:w-24 transform rotate-12 z-20 opacity-90" />
+    <img src="/disco_ball.png" alt="disco ball bottom" loading="lazy"
+      className="absolute bottom-24 right-36 w-14 sm:w-20 transform -rotate-6 z-20 opacity-85" />
+    <img src="/disco_ball.png" alt="disco ball lower left" loading="lazy"
+      className="absolute bottom-20 left-24 w-12 sm:w-16 transform rotate-3 z-20 opacity-80" />
 
+  {/* Copa (top-left) */}
+  <img src="/copa.png" alt="copa" loading="lazy"
+       className="absolute top-12 left-6 w-20 sm:w-28 transform -rotate-6 z-30" />
 
-                <div className='w-full h-full z-30 absolute flex items-center justify-center top-0 left-0'>
-                    {/* button then show invitation */}
-                    <button
-                        onClick={handleOpen}
-                        className='rounded-full size-20 mt-20 bg-[url(/gold.png)] text-xs bg-contain bg-center'
-                    >
-                        Toca aquí
-                        <br />
-                        para abrir
-                    </button>
-                </div>
+    {/* Copas extra */}
+    <img src="/copa.png" alt="copa derecha" loading="lazy"
+      className="absolute top-24 right-56 w-14 sm:w-20 transform rotate-10 z-20 opacity-85" />
+    <img src="/copa.png" alt="copa inferior" loading="lazy"
+      className="absolute bottom-10 left-10 w-16 sm:w-24 transform -rotate-12 z-20 opacity-80" />
+    <img src="/copa.png" alt="copa inferior derecha" loading="lazy"
+      className="absolute bottom-16 right-8 w-14 sm:w-20 transform rotate-8 z-20 opacity-75" />
 
-                <Image
-                    src='/ornamento.png'
-                    alt='Flower Bottom'
+  {/* Estrellas dispersas */}
+  <img src="/estrella.png" alt="estrella 1" loading="lazy"
+       className="absolute top-24 left-1/3 w-10 sm:w-14 z-25 opacity-90" />
+  <img src="/estrella.png" alt="estrella 2" loading="lazy"
+       className="absolute top-6 left-1/2 -translate-x-1/2 w-8 sm:w-12 z-25 opacity-80" />
+  <img src="/estrella.png" alt="estrella 3" loading="lazy"
+       className="absolute bottom-36 right-28 w-12 sm:w-16 z-25 opacity-85" />
+    <img src="/estrella.png" alt="estrella 4" loading="lazy"
+      className="absolute top-44 left-12 w-8 sm:w-12 z-25 opacity-80 rotate-12" />
+    <img src="/estrella.png" alt="estrella 5" loading="lazy"
+      className="absolute top-52 right-8 w-8 sm:w-12 z-25 opacity-75 -rotate-12" />
+    <img src="/estrella.png" alt="estrella 6" loading="lazy"
+      className="absolute bottom-52 left-1/4 w-10 sm:w-14 z-25 opacity-85 rotate-6" />
+    <img src="/estrella.png" alt="estrella 7" loading="lazy"
+      className="absolute bottom-14 left-1/2 -translate-x-1/2 w-8 sm:w-12 z-25 opacity-70" />
+    <img src="/estrella.png" alt="estrella 8" loading="lazy"
+      className="absolute top-1/3 right-1/4 w-7 sm:w-10 z-25 opacity-75" />
+    <img src="/estrella.png" alt="estrella 9" loading="lazy"
+      className="absolute top-1/3 left-1/4 w-7 sm:w-10 z-25 opacity-75" />
 
-                    className='absolute top-0 left-0 z-50 scale-x-[-1]'
-                    width={300}
-                    height={300}
-                />
-                <Image
-                    src='/ornamento.png'
-                    alt='Flower Bottom'
+  {/* Contenedor central (texto / foto) */}
+  <div className='absolute inset-0 flex items-center justify-center z-40'>
+    <div className='relative w-full h-full'>
+      <div className='absolute z-40 top-[30%] left-1/2 -translate-x-1/2 text-center px-4'>
+        <p className='text-black/90 text-xl sm:text-2xl tracking-[0.2em] uppercase mb-3'>Invitación Especial</p>
+        <h1 className='text-black text-5xl sm:text-7xl leading-tight' style={{ fontFamily: 'var(--font-fleur)' }}>
+          Cumpleaños de Mary
+        </h1>
+      </div>
 
-                    className=' absolute bottom-0 right-0 z-50'
-                    width={300}
-                    height={300}
-                />
+      <div className='w-full h-full z-50 absolute flex items-center justify-center top-0 left-0'>
+        <button
+          onClick={handleOpen}
+          className='mt-36 rounded-full px-8 py-5 text-base sm:text-lg font-semibold text-[#3a0ca3] bg-white shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:scale-105 transition-transform duration-300'
+        >
+          Toca aquí
+          <br />
+          para abrir la invitación
+        </button>
+      </div>
 
-            </div>
+      <div className='absolute bottom-10 right-10 z-40 text-white/90 text-sm sm:text-base tracking-widest uppercase'>
+        28 Marzo 2026
+      </div>
+    </div>
+  </div>
+</div>
+)}
 
-            {/* invitation */}
+            {/* invitation component */}
             {isOpen && <Invitation invitation={invitation} />}
 
             {/* audio control */}
             {isOpen && (
                 <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 rounded-full flex items-center gap-2'>
                     <div className='flex flex-row w-max items-center gap-3 bg-amber-900/80 backdrop-blur-sm px-3 py-2 rounded-full '>
-
                         <div className='flex flex-row gap-1 items-end'>
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '20px', animationDelay: '0ms' }}></div>
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '15px', animationDelay: '150ms' }}></div>
@@ -138,30 +172,12 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '18px', animationDelay: '450ms' }}></div>
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '22px', animationDelay: '600ms' }}></div>
                         </div>
-                        <button
-                            onClick={toggleMute}
-                            className='bg-amber-700 hover:bg-amber-600 text-white rounded-full w-10 h-10 flex items-center justify-center shrink-0'
-                        >
-                            {isMuted ? '🔇' : '🔊'}
-                        </button>
-
-
                     </div>
-                    <button
-                        onClick={showScrollUp ? scrollToTop : scrollToRSVP}
-                        className='bg-purple-700 hover:bg-purple-600 text-white w-auto p-7 h-8 rounded-full text-sm transition-colors flex items-center justify-center'
-                        title={showScrollUp ? 'Volver arriba' : 'Ir a RSVP'}
-                    >
-                        {showScrollUp ? '⬆️' : 'Confirmar asistencia'}
-                    </button>
-
                 </div>
-
-
             )}
 
             {/* audio */}
-            <audio ref={audioRef} src='/hasta_mi_final.m4a' />
+            <audio ref={audioRef} src='/jamaican_Bam-Bam.m4a' />
         </div>
     )
 }

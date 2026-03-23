@@ -11,7 +11,7 @@ export default function Countdown() {
   });
 
   useEffect(() => {
-    const weddingDate = new Date('2026-01-02T18:00:00').getTime();
+    const weddingDate = new Date('2026-03-28T18:00:00').getTime();
 
     const timer = setInterval(() => {
       const now = new Date().getTime();
@@ -33,11 +33,11 @@ export default function Countdown() {
   return (
     <div className="w-full py-16 bg-linear-to-b from-purple-50 to-white bg-[url('/pattern.png')] bg-repeat">
       <div className="max-w-6xl mx-auto px-4">
-        <h2 className="text-center text-3xl md:text-4xl font-serif text-purple-900 mb-8">
+        <h2 className="text-center text-3xl md:text-4xl font-serif text-purple-900 mb-8" style={{ fontFamily: 'var(--font-fleur)' }}>
           Faltan
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-purple-100">
+          <div className="bg-white rounded-lg shadow-lg p-6 text-center border border-purple-100" >
             <div className="text-4xl md:text-5xl font-bold text-purple-700 mb-2">
               {timeLeft.days}
             </div>
