@@ -94,6 +94,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
             >
               <div className="space-y-2 text-gray-700">
                 <p className="text-lg"><span className="font-medium">Inicio:</span> 8:00 PM</p>
+                <p className="text-lg"><span className="font-medium">Día:</span> Sábado 28</p>
               </div>
             </InfoCard>
           </div>
@@ -194,7 +195,7 @@ export default function Invitation({ invitation }: InvitationContentProps) {
           <p className="text-3xl mb-2" style={{ fontFamily: 'var(--font-fleur)' }}>Fiesta de Mary</p>
           <p className="text-white/80">28 de marzo, 2026</p>
           <p className="text-white/60 mt-4 text-sm">
-            Gracias por celebrar este dia especial conmigo
+            Gracias por celebrar este día especial conmigo
           </p>
         </div>
       </footer>

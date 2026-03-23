@@ -165,6 +165,7 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
             {isOpen && (
                 <div className='fixed bottom-4 left-1/2 transform -translate-x-1/2 z-50 rounded-full flex items-center gap-2'>
                     <div className='flex flex-row w-max items-center gap-3 bg-amber-900/80 backdrop-blur-sm px-3 py-2 rounded-full '>
+
                         <div className='flex flex-row gap-1 items-end'>
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '20px', animationDelay: '0ms' }}></div>
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '15px', animationDelay: '150ms' }}></div>
@@ -172,8 +173,18 @@ export default function InvitationCover({ invitation }: InvitationCoverProps) {
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '18px', animationDelay: '450ms' }}></div>
                             <div className='w-1 bg-white rounded-full animate-pulse' style={{ height: '22px', animationDelay: '600ms' }}></div>
                         </div>
+                        <button
+                            onClick={toggleMute}
+                            className='bg-amber-700 hover:bg-amber-600 text-white rounded-full w-10 h-10 flex items-center justify-center shrink-0'
+                        >
+                            {isMuted ? '🔇' : '🔊'}
+                        </button>
+
+
                     </div>
                 </div>
+
+
             )}
 
             {/* audio */}
