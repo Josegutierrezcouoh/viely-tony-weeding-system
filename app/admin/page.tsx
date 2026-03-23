@@ -95,7 +95,6 @@ export default function AdminDashboard() {
           <div className="flex justify-between items-center py-4">
             <div>
               <h1 className="text-2xl font-serif text-purple-900">Panel Admin</h1>
-              <p className="text-sm text-gray-600">Viely & Tony Wedding - 02 Enero, 2026</p>
               {user && <p className="text-xs text-gray-500 mt-1">{user.email}</p>}
             </div>
             <button

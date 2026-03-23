@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lato } from "next/font/google";
+import { Great_Vibes, Lato } from "next/font/google";
 import "./globals.css";
 
-const playfair = Playfair_Display({
-  variable: "--font-playfair",
+const greatVibes = Great_Vibes({
+  variable: "--font-fleur",
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });
@@ -16,8 +17,8 @@ const lato = Lato({
 });
 
 export const metadata: Metadata = {
-  title: "Viely & Tony - Boda 02 de Enero, 2026",
-  description: "Te invitamos a celebrar nuestra boda el 02 de Enero de 2026 en Quinta el Paraíso",
+  title: "Fiesta de Mary - 28 de marzo de 2026",
+  description: "Ven a mi fiesta",
 };
 
 export default function RootLayout({
@@ -28,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${playfair.variable} ${lato.variable} antialiased`}
+        className={`${greatVibes.variable} ${lato.variable} antialiased`}
       >
         {children}
       </body>

@@ -27,7 +27,12 @@ Para obtener estas credenciales:
 
 ### 2.2 Configurar Site URL
 1. Ve a **Authentication > URL Configuration**
-2. En "Site URL" agrega: `http://localhost:3000` (desarrollo)
+2. En "Site URL" agrega:
+  - Desarrollo: `http://localhost:3000`
+  - Producción: `https://tu-proyecto.vercel.app`
+3. En "Redirect URLs" agrega también ambas URLs para evitar errores de sesión:
+  - `http://localhost:3000/**`
+  - `https://tu-proyecto.vercel.app/**`
 
 ### 2.3 Crear Usuario Admin Inicial
 

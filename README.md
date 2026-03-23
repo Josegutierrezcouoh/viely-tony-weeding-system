@@ -25,8 +25,28 @@ npm run dev
 ```
 
 Visita:
-- Invitaciones: `http://localhost:3000/invitation/[codigo]`
+- Invitaciones: `http://localhost:3000/invitacion/[codigo]`
 - Panel Admin: `http://localhost:3000/admin/login`
+
+## 🌍 Publicar y Compartir Invitaciones
+
+### Opción Recomendada: Vercel
+
+1. Sube el proyecto a GitHub.
+2. En [Vercel](https://vercel.com), crea un proyecto e importa el repositorio.
+3. En **Settings > Environment Variables** agrega:
+	- `NEXT_PUBLIC_SUPABASE_URL`
+	- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. Ejecuta el deploy.
+5. Usa el dominio generado por Vercel (ejemplo: `https://tu-proyecto.vercel.app`).
+
+Los links públicos para compartir quedarán así:
+
+```text
+https://tu-proyecto.vercel.app/invitacion/CODIGO
+```
+
+> Nota: En Supabase debes agregar tu dominio de producción en **Authentication > URL Configuration**.
 
 ## 📁 Estructura del Proyecto
 
